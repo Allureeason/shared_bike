@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package bike;
+
+message mobile_code_request {
+    required string mobile = 1;
+}
+
+message mobile_code_response {
+    required uint32 code = 1;
+    required uint32 icode = 2;
+    optional string desc = 3;
+}
