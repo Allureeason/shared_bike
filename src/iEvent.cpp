@@ -8,7 +8,7 @@ iEvent::iEvent(uint32_t eid, uint32_t sn)
 iEvent::~iEvent() {
 }
 
-uint32_t iEvent::generateSeqNo() {
+uint32_t iEvent::generateSeqNo() const {
     static uint32_t seqNo = 0;
     return ++seqNo;
 }

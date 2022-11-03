@@ -16,76 +16,68 @@
 #include <google/protobuf/port_def.inc>
 
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
 namespace bike {
-PROTOBUF_CONSTEXPR mobile_code_request::mobile_code_request(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.mobile_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+constexpr mobile_code_request::mobile_code_request(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : mobile_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct mobile_code_requestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR mobile_code_requestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  constexpr mobile_code_requestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
   ~mobile_code_requestDefaultTypeInternal() {}
   union {
     mobile_code_request _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 mobile_code_requestDefaultTypeInternal _mobile_code_request_default_instance_;
-PROTOBUF_CONSTEXPR mobile_code_response::mobile_code_response(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.desc_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.code_)*/0u
-  , /*decltype(_impl_.icode_)*/0u} {}
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT mobile_code_requestDefaultTypeInternal _mobile_code_request_default_instance_;
+constexpr mobile_code_response::mobile_code_response(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : desc_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , code_(0u)
+  , icode_(0u){}
 struct mobile_code_responseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR mobile_code_responseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  constexpr mobile_code_responseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
   ~mobile_code_responseDefaultTypeInternal() {}
   union {
     mobile_code_response _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 mobile_code_responseDefaultTypeInternal _mobile_code_response_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT mobile_code_responseDefaultTypeInternal _mobile_code_response_default_instance_;
 }  // namespace bike
-static ::_pb::Metadata file_level_metadata_proto_2fbike_2eproto[2];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_proto_2fbike_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_proto_2fbike_2eproto = nullptr;
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_proto_2fbike_2eproto[2];
+static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_proto_2fbike_2eproto = nullptr;
+static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_proto_2fbike_2eproto = nullptr;
 
 const uint32_t TableStruct_proto_2fbike_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_request, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_request, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::bike::mobile_code_request, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_request, _impl_.mobile_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_request, mobile_),
   0,
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _impl_.code_),
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _impl_.icode_),
-  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, _impl_.desc_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, code_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, icode_),
+  PROTOBUF_FIELD_OFFSET(::bike::mobile_code_response, desc_),
   1,
   2,
   0,
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 7, -1, sizeof(::bike::mobile_code_request)},
   { 8, 17, -1, sizeof(::bike::mobile_code_response)},
 };
 
-static const ::_pb::Message* const file_default_instances[] = {
-  &::bike::_mobile_code_request_default_instance_._instance,
-  &::bike::_mobile_code_response_default_instance_._instance,
+static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bike::_mobile_code_request_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bike::_mobile_code_response_default_instance_),
 };
 
 const char descriptor_table_protodef_proto_2fbike_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -94,28 +86,26 @@ const char descriptor_table_protodef_proto_2fbike_2eproto[] PROTOBUF_SECTION_VAR
   "esponse\022\014\n\004code\030\001 \002(\r\022\r\n\005icode\030\002 \002(\r\022\014\n\004"
   "desc\030\003 \001(\t"
   ;
-static ::_pbi::once_flag descriptor_table_proto_2fbike_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_proto_2fbike_2eproto = {
-    false, false, 130, descriptor_table_protodef_proto_2fbike_2eproto,
-    "proto/bike.proto",
-    &descriptor_table_proto_2fbike_2eproto_once, nullptr, 0, 2,
-    schemas, file_default_instances, TableStruct_proto_2fbike_2eproto::offsets,
-    file_level_metadata_proto_2fbike_2eproto, file_level_enum_descriptors_proto_2fbike_2eproto,
-    file_level_service_descriptors_proto_2fbike_2eproto,
+static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_proto_2fbike_2eproto_once;
+const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_proto_2fbike_2eproto = {
+  false, false, 130, descriptor_table_protodef_proto_2fbike_2eproto, "proto/bike.proto", 
+  &descriptor_table_proto_2fbike_2eproto_once, nullptr, 0, 2,
+  schemas, file_default_instances, TableStruct_proto_2fbike_2eproto::offsets,
+  file_level_metadata_proto_2fbike_2eproto, file_level_enum_descriptors_proto_2fbike_2eproto, file_level_service_descriptors_proto_2fbike_2eproto,
 };
-PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_proto_2fbike_2eproto_getter() {
+PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_proto_2fbike_2eproto_getter() {
   return &descriptor_table_proto_2fbike_2eproto;
 }
 
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_proto_2fbike_2eproto(&descriptor_table_proto_2fbike_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_proto_2fbike_2eproto(&descriptor_table_proto_2fbike_2eproto);
 namespace bike {
 
 // ===================================================================
 
 class mobile_code_request::_Internal {
  public:
-  using HasBits = decltype(std::declval<mobile_code_request>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<mobile_code_request>()._has_bits_);
   static void set_has_mobile(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -127,60 +117,54 @@ class mobile_code_request::_Internal {
 mobile_code_request::mobile_code_request(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
   // @@protoc_insertion_point(arena_constructor:bike.mobile_code_request)
 }
 mobile_code_request::mobile_code_request(const mobile_code_request& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  mobile_code_request* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.mobile_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.mobile_.InitDefault();
+  mobile_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mobile_.Set("", GetArenaForAllocation());
+    mobile_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_mobile()) {
-    _this->_impl_.mobile_.Set(from._internal_mobile(), 
-      _this->GetArenaForAllocation());
+    mobile_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_mobile(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:bike.mobile_code_request)
 }
 
-inline void mobile_code_request::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.mobile_){}
-  };
-  _impl_.mobile_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mobile_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void mobile_code_request::SharedCtor() {
+mobile_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  mobile_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 mobile_code_request::~mobile_code_request() {
   // @@protoc_insertion_point(destructor:bike.mobile_code_request)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 inline void mobile_code_request::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.mobile_.Destroy();
+  mobile_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void mobile_code_request::ArenaDtor(void* object) {
+  mobile_code_request* _this = reinterpret_cast< mobile_code_request* >(object);
+  (void)_this;
+}
+void mobile_code_request::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void mobile_code_request::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void mobile_code_request::Clear() {
@@ -189,30 +173,30 @@ void mobile_code_request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    _impl_.mobile_.ClearNonDefaultToEmpty();
+    mobile_.ClearNonDefaultToEmpty();
   }
-  _impl_._has_bits_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* mobile_code_request::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* mobile_code_request::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // required string mobile = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_mobile();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::_pbi::VerifyUTF8(str, "bike.mobile_code_request.mobile");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "bike.mobile_code_request.mobile");
           #endif  // !NDEBUG
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -232,7 +216,7 @@ const char* mobile_code_request::_InternalParse(const char* ptr, ::_pbi::ParseCo
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -246,7 +230,7 @@ uint8_t* mobile_code_request::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   // required string mobile = 1;
   if (cached_has_bits & 0x00000001u) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -258,7 +242,7 @@ uint8_t* mobile_code_request::_InternalSerialize(
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:bike.mobile_code_request)
@@ -279,28 +263,32 @@ size_t mobile_code_request::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData mobile_code_request::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     mobile_code_request::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*mobile_code_request::GetClassData() const { return &_class_data_; }
 
+void mobile_code_request::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<mobile_code_request *>(to)->MergeFrom(
+      static_cast<const mobile_code_request &>(from));
+}
 
-void mobile_code_request::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<mobile_code_request*>(&to_msg);
-  auto& from = static_cast<const mobile_code_request&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:bike.mobile_code_request)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void mobile_code_request::MergeFrom(const mobile_code_request& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bike.mobile_code_request)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_mobile()) {
-    _this->_internal_set_mobile(from._internal_mobile());
+    _internal_set_mobile(from._internal_mobile());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void mobile_code_request::CopyFrom(const mobile_code_request& from) {
@@ -311,7 +299,7 @@ void mobile_code_request::CopyFrom(const mobile_code_request& from) {
 }
 
 bool mobile_code_request::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
   return true;
 }
 
@@ -320,15 +308,16 @@ void mobile_code_request::InternalSwap(mobile_code_request* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.mobile_, lhs_arena,
-      &other->_impl_.mobile_, rhs_arena
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &mobile_, lhs_arena,
+      &other->mobile_, rhs_arena
   );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata mobile_code_request::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_proto_2fbike_2eproto_getter, &descriptor_table_proto_2fbike_2eproto_once,
       file_level_metadata_proto_2fbike_2eproto[0]);
 }
@@ -337,7 +326,7 @@ void mobile_code_request::InternalSwap(mobile_code_request* other) {
 
 class mobile_code_response::_Internal {
  public:
-  using HasBits = decltype(std::declval<mobile_code_response>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<mobile_code_response>()._has_bits_);
   static void set_has_code(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
@@ -355,67 +344,61 @@ class mobile_code_response::_Internal {
 mobile_code_response::mobile_code_response(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
   // @@protoc_insertion_point(arena_constructor:bike.mobile_code_response)
 }
 mobile_code_response::mobile_code_response(const mobile_code_response& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  mobile_code_response* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.desc_){}
-    , decltype(_impl_.code_){}
-    , decltype(_impl_.icode_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.desc_.InitDefault();
+  desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.desc_.Set("", GetArenaForAllocation());
+    desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_desc()) {
-    _this->_impl_.desc_.Set(from._internal_desc(), 
-      _this->GetArenaForAllocation());
+    desc_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_desc(), 
+      GetArenaForAllocation());
   }
-  ::memcpy(&_impl_.code_, &from._impl_.code_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.icode_) -
-    reinterpret_cast<char*>(&_impl_.code_)) + sizeof(_impl_.icode_));
+  ::memcpy(&code_, &from.code_,
+    static_cast<size_t>(reinterpret_cast<char*>(&icode_) -
+    reinterpret_cast<char*>(&code_)) + sizeof(icode_));
   // @@protoc_insertion_point(copy_constructor:bike.mobile_code_response)
 }
 
-inline void mobile_code_response::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.desc_){}
-    , decltype(_impl_.code_){0u}
-    , decltype(_impl_.icode_){0u}
-  };
-  _impl_.desc_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.desc_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void mobile_code_response::SharedCtor() {
+desc_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  desc_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), "", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&code_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&icode_) -
+    reinterpret_cast<char*>(&code_)) + sizeof(icode_));
 }
 
 mobile_code_response::~mobile_code_response() {
   // @@protoc_insertion_point(destructor:bike.mobile_code_response)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 inline void mobile_code_response::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.desc_.Destroy();
+  desc_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void mobile_code_response::ArenaDtor(void* object) {
+  mobile_code_response* _this = reinterpret_cast< mobile_code_response* >(object);
+  (void)_this;
+}
+void mobile_code_response::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void mobile_code_response::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void mobile_code_response::Clear() {
@@ -424,31 +407,31 @@ void mobile_code_response::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    _impl_.desc_.ClearNonDefaultToEmpty();
+    desc_.ClearNonDefaultToEmpty();
   }
   if (cached_has_bits & 0x00000006u) {
-    ::memset(&_impl_.code_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.icode_) -
-        reinterpret_cast<char*>(&_impl_.code_)) + sizeof(_impl_.icode_));
+    ::memset(&code_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&icode_) -
+        reinterpret_cast<char*>(&code_)) + sizeof(icode_));
   }
-  _impl_._has_bits_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* mobile_code_response::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* mobile_code_response::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // required uint32 code = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _Internal::set_has_code(&has_bits);
-          _impl_.code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -457,7 +440,7 @@ const char* mobile_code_response::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _Internal::set_has_icode(&has_bits);
-          _impl_.icode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          icode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -466,11 +449,11 @@ const char* mobile_code_response::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_desc();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::_pbi::VerifyUTF8(str, "bike.mobile_code_response.desc");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "bike.mobile_code_response.desc");
           #endif  // !NDEBUG
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -490,7 +473,7 @@ const char* mobile_code_response::_InternalParse(const char* ptr, ::_pbi::ParseC
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -504,17 +487,17 @@ uint8_t* mobile_code_response::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   // required uint32 code = 1;
   if (cached_has_bits & 0x00000002u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_code(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_code(), target);
   }
 
   // required uint32 icode = 2;
   if (cached_has_bits & 0x00000004u) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_icode(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_icode(), target);
   }
 
   // optional string desc = 3;
@@ -528,7 +511,7 @@ uint8_t* mobile_code_response::_InternalSerialize(
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:bike.mobile_code_response)
@@ -541,12 +524,12 @@ size_t mobile_code_response::RequiredFieldsByteSizeFallback() const {
 
   if (_internal_has_code()) {
     // required uint32 code = 1;
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_code());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_code());
   }
 
   if (_internal_has_icode()) {
     // required uint32 icode = 2;
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_icode());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_icode());
   }
 
   return total_size;
@@ -555,12 +538,12 @@ size_t mobile_code_response::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:bike.mobile_code_response)
   size_t total_size = 0;
 
-  if (((_impl_._has_bits_[0] & 0x00000006) ^ 0x00000006) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x00000006) ^ 0x00000006) == 0) {  // All required fields are present.
     // required uint32 code = 1;
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_code());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_code());
 
     // required uint32 icode = 2;
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_icode());
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_icode());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -570,45 +553,49 @@ size_t mobile_code_response::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // optional string desc = 3;
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_desc());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData mobile_code_response::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     mobile_code_response::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*mobile_code_response::GetClassData() const { return &_class_data_; }
 
+void mobile_code_response::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<mobile_code_response *>(to)->MergeFrom(
+      static_cast<const mobile_code_response &>(from));
+}
 
-void mobile_code_response::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<mobile_code_response*>(&to_msg);
-  auto& from = static_cast<const mobile_code_response&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:bike.mobile_code_response)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void mobile_code_response::MergeFrom(const mobile_code_response& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bike.mobile_code_response)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
+  cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_desc(from._internal_desc());
+      _internal_set_desc(from._internal_desc());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.code_ = from._impl_.code_;
+      code_ = from.code_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.icode_ = from._impl_.icode_;
+      icode_ = from.icode_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void mobile_code_response::CopyFrom(const mobile_code_response& from) {
@@ -619,7 +606,7 @@ void mobile_code_response::CopyFrom(const mobile_code_response& from) {
 }
 
 bool mobile_code_response::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
   return true;
 }
 
@@ -628,21 +615,22 @@ void mobile_code_response::InternalSwap(mobile_code_response* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.desc_, lhs_arena,
-      &other->_impl_.desc_, rhs_arena
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &desc_, lhs_arena,
+      &other->desc_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(mobile_code_response, _impl_.icode_)
-      + sizeof(mobile_code_response::_impl_.icode_)
-      - PROTOBUF_FIELD_OFFSET(mobile_code_response, _impl_.code_)>(
-          reinterpret_cast<char*>(&_impl_.code_),
-          reinterpret_cast<char*>(&other->_impl_.code_));
+      PROTOBUF_FIELD_OFFSET(mobile_code_response, icode_)
+      + sizeof(mobile_code_response::icode_)
+      - PROTOBUF_FIELD_OFFSET(mobile_code_response, code_)>(
+          reinterpret_cast<char*>(&code_),
+          reinterpret_cast<char*>(&other->code_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata mobile_code_response::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_proto_2fbike_2eproto_getter, &descriptor_table_proto_2fbike_2eproto_once,
       file_level_metadata_proto_2fbike_2eproto[1]);
 }
@@ -650,12 +638,10 @@ void mobile_code_response::InternalSwap(mobile_code_response* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace bike
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::bike::mobile_code_request*
-Arena::CreateMaybeMessage< ::bike::mobile_code_request >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::bike::mobile_code_request* Arena::CreateMaybeMessage< ::bike::mobile_code_request >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bike::mobile_code_request >(arena);
 }
-template<> PROTOBUF_NOINLINE ::bike::mobile_code_response*
-Arena::CreateMaybeMessage< ::bike::mobile_code_response >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::bike::mobile_code_response* Arena::CreateMaybeMessage< ::bike::mobile_code_response >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bike::mobile_code_response >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE

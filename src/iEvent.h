@@ -11,9 +11,9 @@ public:
 
     virtual std::ostream& dump(std::ostream& out) { return out; }
     uint32_t getId() const { return m_eid; }
+    uint32_t getSn() const { return m_sn; }
     
-private:
-    uint32_t generateSeqNo();
+    uint32_t generateSeqNo() const;
 
 private:
     uint32_t m_eid;

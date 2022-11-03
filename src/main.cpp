@@ -1,14 +1,15 @@
 #include <iostream>
 #include "iEvent.h"
 #include "proto/bike.pb.h"
+#include "events.h"
 
 int main(int argc, char** argv) {
 
-    bike::mobile_code_request mcr("15207747257");
-    std::cout << mcr.mobile() << std::endl;
+    MobileCodeReqEv *mce = new MobileCodeReqEv("15207747257");
+    mce->dump(std::cout);
 
-    iEvent *ie = new iEvent(111, 2);
-    std::cout << ie->getId() << std::endl;
+    MobileCodeRespEv *mresp = new MobileCodeRespEv(132, 4789783);
+    mresp->dump(std::cout);
     
     return 0;
 }
