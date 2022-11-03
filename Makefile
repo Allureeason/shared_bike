@@ -244,6 +244,60 @@ src/proto/bike.pb.cc.s:
 	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/proto/bike.pb.cc.s
 .PHONY : src/proto/bike.pb.cc.s
 
+src/ret_code.o: src/ret_code.cpp.o
+
+.PHONY : src/ret_code.o
+
+# target to build an object file
+src/ret_code.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/ret_code.cpp.o
+.PHONY : src/ret_code.cpp.o
+
+src/ret_code.i: src/ret_code.cpp.i
+
+.PHONY : src/ret_code.i
+
+# target to preprocess a source file
+src/ret_code.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/ret_code.cpp.i
+.PHONY : src/ret_code.cpp.i
+
+src/ret_code.s: src/ret_code.cpp.s
+
+.PHONY : src/ret_code.s
+
+# target to generate assembly for a file
+src/ret_code.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/ret_code.cpp.s
+.PHONY : src/ret_code.cpp.s
+
+src/user_event_handler.o: src/user_event_handler.cpp.o
+
+.PHONY : src/user_event_handler.o
+
+# target to build an object file
+src/user_event_handler.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/user_event_handler.cpp.o
+.PHONY : src/user_event_handler.cpp.o
+
+src/user_event_handler.i: src/user_event_handler.cpp.i
+
+.PHONY : src/user_event_handler.i
+
+# target to preprocess a source file
+src/user_event_handler.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/user_event_handler.cpp.i
+.PHONY : src/user_event_handler.cpp.i
+
+src/user_event_handler.s: src/user_event_handler.cpp.s
+
+.PHONY : src/user_event_handler.s
+
+# target to generate assembly for a file
+src/user_event_handler.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/user_event_handler.cpp.s
+.PHONY : src/user_event_handler.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -266,6 +320,12 @@ help:
 	@echo "... src/proto/bike.pb.o"
 	@echo "... src/proto/bike.pb.i"
 	@echo "... src/proto/bike.pb.s"
+	@echo "... src/ret_code.o"
+	@echo "... src/ret_code.i"
+	@echo "... src/ret_code.s"
+	@echo "... src/user_event_handler.o"
+	@echo "... src/user_event_handler.i"
+	@echo "... src/user_event_handler.s"
 .PHONY : help
 
 

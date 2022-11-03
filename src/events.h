@@ -14,7 +14,7 @@ public:
         m_mrc.set_mobile(mobile);        
     }
 
-    const std::string& getMobile() const {
+    std::string getMobile() const {
         return m_mrc.mobile();
     }
     virtual std::ostream& dump(std::ostream& out) override;

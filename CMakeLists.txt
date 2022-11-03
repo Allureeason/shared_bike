@@ -18,8 +18,10 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(/usr/local/include)
 
 add_library(shared_bike SHARED
+    src/ret_code.cpp
     src/iEvent.cpp
     src/events.cpp
+    src/user_event_handler.cpp
     src/proto/bike.pb.cc
 )
 
