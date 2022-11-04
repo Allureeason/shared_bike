@@ -3,6 +3,8 @@
 
 #include "events.h"
 #include "iEventHandler.h"
+#include "threadpool/thread.h"
+#include <map>
 
 class UserEventHandler : public iEventHandler {
 public:
@@ -17,7 +19,7 @@ private:
 
 private:
     std::map<std::string, uint32_t> m_mobile2code;
-
+    pthread_mutex_t m_mutex;
 };
 
 #endif

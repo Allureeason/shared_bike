@@ -23,6 +23,9 @@ SUFFIXES =
 .SUFFIXES: .hpux_make_needs_suffix_list
 
 
+# Produce verbose output by default.
+VERBOSE = 1
+
 # Suppress display of executed commands.
 $(VERBOSE).SILENT:
 
@@ -135,6 +138,33 @@ shared_bike: cmake_check_build_system
 shared_bike/fast:
 	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/build
 .PHONY : shared_bike/fast
+
+src/DispatchMsgService.o: src/DispatchMsgService.cpp.o
+
+.PHONY : src/DispatchMsgService.o
+
+# target to build an object file
+src/DispatchMsgService.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/DispatchMsgService.cpp.o
+.PHONY : src/DispatchMsgService.cpp.o
+
+src/DispatchMsgService.i: src/DispatchMsgService.cpp.i
+
+.PHONY : src/DispatchMsgService.i
+
+# target to preprocess a source file
+src/DispatchMsgService.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/DispatchMsgService.cpp.i
+.PHONY : src/DispatchMsgService.cpp.i
+
+src/DispatchMsgService.s: src/DispatchMsgService.cpp.s
+
+.PHONY : src/DispatchMsgService.s
+
+# target to generate assembly for a file
+src/DispatchMsgService.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/DispatchMsgService.cpp.s
+.PHONY : src/DispatchMsgService.cpp.s
 
 src/events.o: src/events.cpp.o
 
@@ -271,6 +301,87 @@ src/ret_code.cpp.s:
 	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/ret_code.cpp.s
 .PHONY : src/ret_code.cpp.s
 
+src/threadpool/thread_cond.o: src/threadpool/thread_cond.cpp.o
+
+.PHONY : src/threadpool/thread_cond.o
+
+# target to build an object file
+src/threadpool/thread_cond.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_cond.cpp.o
+.PHONY : src/threadpool/thread_cond.cpp.o
+
+src/threadpool/thread_cond.i: src/threadpool/thread_cond.cpp.i
+
+.PHONY : src/threadpool/thread_cond.i
+
+# target to preprocess a source file
+src/threadpool/thread_cond.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_cond.cpp.i
+.PHONY : src/threadpool/thread_cond.cpp.i
+
+src/threadpool/thread_cond.s: src/threadpool/thread_cond.cpp.s
+
+.PHONY : src/threadpool/thread_cond.s
+
+# target to generate assembly for a file
+src/threadpool/thread_cond.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_cond.cpp.s
+.PHONY : src/threadpool/thread_cond.cpp.s
+
+src/threadpool/thread_mutex.o: src/threadpool/thread_mutex.cpp.o
+
+.PHONY : src/threadpool/thread_mutex.o
+
+# target to build an object file
+src/threadpool/thread_mutex.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_mutex.cpp.o
+.PHONY : src/threadpool/thread_mutex.cpp.o
+
+src/threadpool/thread_mutex.i: src/threadpool/thread_mutex.cpp.i
+
+.PHONY : src/threadpool/thread_mutex.i
+
+# target to preprocess a source file
+src/threadpool/thread_mutex.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_mutex.cpp.i
+.PHONY : src/threadpool/thread_mutex.cpp.i
+
+src/threadpool/thread_mutex.s: src/threadpool/thread_mutex.cpp.s
+
+.PHONY : src/threadpool/thread_mutex.s
+
+# target to generate assembly for a file
+src/threadpool/thread_mutex.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_mutex.cpp.s
+.PHONY : src/threadpool/thread_mutex.cpp.s
+
+src/threadpool/thread_pool.o: src/threadpool/thread_pool.cpp.o
+
+.PHONY : src/threadpool/thread_pool.o
+
+# target to build an object file
+src/threadpool/thread_pool.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_pool.cpp.o
+.PHONY : src/threadpool/thread_pool.cpp.o
+
+src/threadpool/thread_pool.i: src/threadpool/thread_pool.cpp.i
+
+.PHONY : src/threadpool/thread_pool.i
+
+# target to preprocess a source file
+src/threadpool/thread_pool.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_pool.cpp.i
+.PHONY : src/threadpool/thread_pool.cpp.i
+
+src/threadpool/thread_pool.s: src/threadpool/thread_pool.cpp.s
+
+.PHONY : src/threadpool/thread_pool.s
+
+# target to generate assembly for a file
+src/threadpool/thread_pool.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/threadpool/thread_pool.cpp.s
+.PHONY : src/threadpool/thread_pool.cpp.s
+
 src/user_event_handler.o: src/user_event_handler.cpp.o
 
 .PHONY : src/user_event_handler.o
@@ -308,6 +419,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... SharedBike"
 	@echo "... shared_bike"
+	@echo "... src/DispatchMsgService.o"
+	@echo "... src/DispatchMsgService.i"
+	@echo "... src/DispatchMsgService.s"
 	@echo "... src/events.o"
 	@echo "... src/events.i"
 	@echo "... src/events.s"
@@ -323,6 +437,15 @@ help:
 	@echo "... src/ret_code.o"
 	@echo "... src/ret_code.i"
 	@echo "... src/ret_code.s"
+	@echo "... src/threadpool/thread_cond.o"
+	@echo "... src/threadpool/thread_cond.i"
+	@echo "... src/threadpool/thread_cond.s"
+	@echo "... src/threadpool/thread_mutex.o"
+	@echo "... src/threadpool/thread_mutex.i"
+	@echo "... src/threadpool/thread_mutex.s"
+	@echo "... src/threadpool/thread_pool.o"
+	@echo "... src/threadpool/thread_pool.i"
+	@echo "... src/threadpool/thread_pool.s"
 	@echo "... src/user_event_handler.o"
 	@echo "... src/user_event_handler.i"
 	@echo "... src/user_event_handler.s"

@@ -2,6 +2,10 @@
 #define _DEMO_THREAD_H_INCLUDED_
 
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #include <stdio.h>
 #include <stdint.h>
@@ -14,8 +18,8 @@
 typedef intptr_t        int_t;
 typedef uintptr_t       uint_t;
 
-#define  OK          0
-#define  ERROR      -1
+#define  TOK          0
+#define  TERROR      -1
 
 
 
@@ -30,8 +34,10 @@ int thread_cond_destroy(pthread_cond_t *cond);
 int thread_cond_signal(pthread_cond_t *cond);
 int thread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mtx);
 
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* _DEMO_THREAD_H_INCLUDED_ */
-
-
 
 

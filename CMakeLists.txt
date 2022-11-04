@@ -13,7 +13,9 @@ endif ()
 
 
 # cpp 标准
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c++11 -Wall -Wno-deprecated -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-deprecated -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 
 include_directories(/usr/local/include)
 
@@ -22,6 +24,11 @@ add_library(shared_bike SHARED
     src/iEvent.cpp
     src/events.cpp
     src/user_event_handler.cpp
+    src/DispatchMsgService.cpp
+
+    src/threadpool/thread_cond.cpp
+    src/threadpool/thread_mutex.cpp
+    src/threadpool/thread_pool.cpp
     src/proto/bike.pb.cc
 )
 
@@ -29,6 +36,8 @@ add_library(shared_bike SHARED
 set(LINK_LIB
     shared_bike
     protobuf
+    log4cpp
+    pthread
 )
 
 add_executable(SharedBike src/main.cpp)

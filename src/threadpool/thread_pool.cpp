@@ -1,6 +1,5 @@
 #include "thread_pool.h"
 
-
 static void thread_pool_exit_handler(void *data);
 static void *thread_pool_cycle(void *data);
 static int_t thread_pool_init_default(thread_pool_t *tpp, char *name);
@@ -19,7 +18,7 @@ thread_pool_t* thread_pool_init()
     pthread_attr_t  attr;
 	thread_pool_t   *tp=NULL;
 
-	tp = calloc(1,sizeof(thread_pool_t));
+	tp = (thread_pool_t*)calloc(1,sizeof(thread_pool_t));
 
 	if(tp == NULL){
 	    fprintf(stderr, "thread_pool_init: calloc failed!\n");
@@ -29,12 +28,12 @@ thread_pool_t* thread_pool_init()
 
     thread_pool_queue_init(&tp->queue);
 
-    if (thread_mutex_create(&tp->mtx) != OK) {
+    if (thread_mutex_create(&tp->mtx) != TOK) {
 		free(tp);
         return NULL;
     }
 
-    if (thread_cond_create(&tp->cond) != OK) {
+    if (thread_cond_create(&tp->cond) != TOK) {
         (void) thread_mutex_destroy(&tp->mtx);
 		free(tp);
         return NULL;
@@ -84,7 +83,7 @@ void thread_pool_destroy(thread_pool_t *tp)
     for (n = 0; n < tp->threads; n++) {
         lock = 1;
 
-        if (thread_task_post(tp, &task) != OK) {
+        if (thread_task_post(tp, &task) != TOK) {
             return;
         }
 
@@ -105,7 +104,7 @@ void thread_pool_destroy(thread_pool_t *tp)
 static void
 thread_pool_exit_handler(void *data)
 {
-    uint_t *lock = data;
+    uint_t *lock = (uint_t*)data;
 
     *lock = 0;
 
@@ -118,7 +117,7 @@ thread_task_alloc(size_t size)
 {
     thread_task_t  *task;
 
-    task = calloc(1,sizeof(thread_task_t) + size);
+    task = (thread_task_t*)calloc(1,sizeof(thread_task_t) + size);
     if (task == NULL) {
         return NULL;
     }
@@ -132,8 +131,8 @@ thread_task_alloc(size_t size)
 int_t
 thread_task_post(thread_pool_t *tp, thread_task_t *task)
 {
-    if (thread_mutex_lock(&tp->mtx) != OK) {
-        return ERROR;
+    if (thread_mutex_lock(&tp->mtx) != TOK) {
+        return TERROR;
     }
 
     if (tp->waiting >= tp->max_queue) {
@@ -141,7 +140,7 @@ thread_task_post(thread_pool_t *tp, thread_task_t *task)
 
         fprintf(stderr,"thread pool \"%s\" queue overflow: %ld tasks waiting\n",
                       tp->name, tp->waiting);
-        return ERROR;
+        return TERROR;
     }
 
     //task->event.active = 1;
@@ -149,9 +148,9 @@ thread_task_post(thread_pool_t *tp, thread_task_t *task)
     task->id = thread_pool_task_id++;
     task->next = NULL;
 
-    if (thread_cond_signal(&tp->cond) != OK) {
+    if (thread_cond_signal(&tp->cond) != TOK) {
         (void) thread_mutex_unlock(&tp->mtx);
-        return ERROR;
+        return TERROR;
     }
 
     *tp->queue.last = task;
@@ -164,14 +163,14 @@ thread_task_post(thread_pool_t *tp, thread_task_t *task)
     if(debug)fprintf(stderr,"task #%lu added to thread pool \"%s\"\n",
                    task->id, tp->name);
 
-    return OK;
+    return TOK;
 }
 
 
 static void *
 thread_pool_cycle(void *data)
 {
-    thread_pool_t *tp = data;
+    thread_pool_t *tp = (thread_pool_t*)data;
 
     int                 err;
     thread_task_t       *task;
@@ -182,7 +181,7 @@ thread_pool_cycle(void *data)
    
 
     for ( ;; ) {
-        if (thread_mutex_lock(&tp->mtx) != OK) {
+        if (thread_mutex_lock(&tp->mtx) != TOK) {
             return NULL;
         }
 
@@ -191,7 +190,7 @@ thread_pool_cycle(void *data)
 
         while (tp->queue.first == NULL) {
             if (thread_cond_wait(&tp->cond, &tp->mtx)
-                != OK)
+                != TOK)
             {
                 (void) thread_mutex_unlock(&tp->mtx);
                 return NULL;
@@ -205,7 +204,7 @@ thread_pool_cycle(void *data)
             tp->queue.last = &tp->queue.first;
         }
 		
-        if (thread_mutex_unlock(&tp->mtx) != OK) {
+        if (thread_mutex_unlock(&tp->mtx) != TOK) {
             return NULL;
         }
 
@@ -241,12 +240,8 @@ thread_pool_init_default(thread_pool_t *tpp, char *name)
                       "thread_pool_init, name: %s ,threads: %lu max_queue: %ld\n",
                       tpp->name, tpp->threads, tpp->max_queue);
 
-        return OK;
+        return TOK;
     }
 
-    return ERROR;
+    return TERROR;
 }
-
-
-
-

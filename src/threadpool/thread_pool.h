@@ -7,6 +7,10 @@
 #define DEFAULT_THREADS_NUM 4
 #define DEFAULT_QUEUE_NUM  65535
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 typedef unsigned long         atomic_uint_t;
 typedef struct thread_task_s  thread_task_t;
@@ -46,5 +50,8 @@ int_t thread_task_post(thread_pool_t *tp, thread_task_t *task);
 thread_pool_t* thread_pool_init();
 void thread_pool_destroy(thread_pool_t *tp);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _THREAD_POOL_H_INCLUDED_ */
