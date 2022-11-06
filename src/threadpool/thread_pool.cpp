@@ -127,6 +127,13 @@ thread_task_alloc(size_t size)
     return task;
 }
 
+void
+thread_task_free(thread_task_t* task) {
+    if(task != nullptr) {
+        free(task);
+        task = nullptr;
+    }
+}
 
 int_t
 thread_task_post(thread_pool_t *tp, thread_task_t *task)

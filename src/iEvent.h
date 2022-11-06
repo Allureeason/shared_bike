@@ -15,9 +15,13 @@ public:
     
     uint32_t generateSeqNo() const;
 
+    void* getArg() const { return m_arg; }
+    void setArg(void* arg) { m_arg = arg; }
+
 private:
     uint32_t m_eid;
     uint32_t m_sn;
+    void* m_arg;
 };
 
 #endif

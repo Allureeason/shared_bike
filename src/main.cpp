@@ -6,18 +6,31 @@
 #include "events.h"
 #include "user_event_handler.h"
 #include "DispatchMsgService.h"
+#include "NetworkInterface.h"
 
 int main(int argc, char** argv) {
 
     UserEventHandler uehl; 
+    printf("Server start");
     DispatchMsgService *DMS = DispatchMsgService::getInstance();
     DMS->open();
-    iEvent *mce = new MobileCodeReqEv("15207747257");
-    DMS->enqueue(mce);
-
-    sleep(3);
-    DMS->close();
     
+    NetworkInterface *Net = new NetworkInterface();
+    Net->start(8888);
+
+    int n = 1000;
+    while(n--) {
+        Net->networkEventDispatch();
+        sleep(1);
+        printf("NetworkInterface dispatch...\n");
+    }
+
+    DMS->close();
+    Net->close();
+
+    delete DMS;
+    delete Net;
+
     return 0;
 }
 

@@ -3,14 +3,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(shared_bike)
 
-# 查找 protobuf
-find_package(Protobuf REQUIRED)
-if (PROTOBUF_FOUND)
-    message("protobuf found")
-else ()
-    message(FATAL_ERROR "Cannot find Protobuf")
-endif ()
-
 
 # cpp 标准
 set(CMAKE_VERBOSE_MAKEFILE ON)
@@ -18,6 +10,9 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c++11 -Wall -
 set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-deprecated -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 
 include_directories(/usr/local/include)
+include_directories(./3rd/libevent/include)
+
+link_directories(./3rd/libevent/build/lib)
 
 add_library(shared_bike SHARED
     src/ret_code.cpp
@@ -25,6 +20,7 @@ add_library(shared_bike SHARED
     src/events.cpp
     src/user_event_handler.cpp
     src/DispatchMsgService.cpp
+    src/NetworkInterface.cpp
 
     src/threadpool/thread_cond.cpp
     src/threadpool/thread_mutex.cpp
@@ -38,11 +34,16 @@ set(LINK_LIB
     protobuf
     log4cpp
     pthread
+    event
 )
 
 add_executable(SharedBike src/main.cpp)
 add_dependencies(SharedBike shared_bike)
 target_link_libraries(SharedBike ${LINK_LIB})
+
+add_executable(test_client tests/test_client.cpp)
+add_dependencies(test_client test_client)
+target_link_libraries(test_client ${LINK_LIB})
 
 # 设置动态库和可执行文件的输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

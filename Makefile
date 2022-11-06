@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_client
+
+# Build rule for target.
+test_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_client
+.PHONY : test_client
+
+# fast build rule for target.
+test_client/fast:
+	$(MAKE) -f CMakeFiles/test_client.dir/build.make CMakeFiles/test_client.dir/build
+.PHONY : test_client/fast
+
+#=============================================================================
 # Target rules for targets named SharedBike
 
 # Build rule for target.
@@ -165,6 +178,33 @@ src/DispatchMsgService.s: src/DispatchMsgService.cpp.s
 src/DispatchMsgService.cpp.s:
 	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/DispatchMsgService.cpp.s
 .PHONY : src/DispatchMsgService.cpp.s
+
+src/NetworkInterface.o: src/NetworkInterface.cpp.o
+
+.PHONY : src/NetworkInterface.o
+
+# target to build an object file
+src/NetworkInterface.cpp.o:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/NetworkInterface.cpp.o
+.PHONY : src/NetworkInterface.cpp.o
+
+src/NetworkInterface.i: src/NetworkInterface.cpp.i
+
+.PHONY : src/NetworkInterface.i
+
+# target to preprocess a source file
+src/NetworkInterface.cpp.i:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/NetworkInterface.cpp.i
+.PHONY : src/NetworkInterface.cpp.i
+
+src/NetworkInterface.s: src/NetworkInterface.cpp.s
+
+.PHONY : src/NetworkInterface.s
+
+# target to generate assembly for a file
+src/NetworkInterface.cpp.s:
+	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/NetworkInterface.cpp.s
+.PHONY : src/NetworkInterface.cpp.s
 
 src/events.o: src/events.cpp.o
 
@@ -409,6 +449,33 @@ src/user_event_handler.cpp.s:
 	$(MAKE) -f CMakeFiles/shared_bike.dir/build.make CMakeFiles/shared_bike.dir/src/user_event_handler.cpp.s
 .PHONY : src/user_event_handler.cpp.s
 
+tests/test_client.o: tests/test_client.cpp.o
+
+.PHONY : tests/test_client.o
+
+# target to build an object file
+tests/test_client.cpp.o:
+	$(MAKE) -f CMakeFiles/test_client.dir/build.make CMakeFiles/test_client.dir/tests/test_client.cpp.o
+.PHONY : tests/test_client.cpp.o
+
+tests/test_client.i: tests/test_client.cpp.i
+
+.PHONY : tests/test_client.i
+
+# target to preprocess a source file
+tests/test_client.cpp.i:
+	$(MAKE) -f CMakeFiles/test_client.dir/build.make CMakeFiles/test_client.dir/tests/test_client.cpp.i
+.PHONY : tests/test_client.cpp.i
+
+tests/test_client.s: tests/test_client.cpp.s
+
+.PHONY : tests/test_client.s
+
+# target to generate assembly for a file
+tests/test_client.cpp.s:
+	$(MAKE) -f CMakeFiles/test_client.dir/build.make CMakeFiles/test_client.dir/tests/test_client.cpp.s
+.PHONY : tests/test_client.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -417,11 +484,15 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_client"
 	@echo "... SharedBike"
 	@echo "... shared_bike"
 	@echo "... src/DispatchMsgService.o"
 	@echo "... src/DispatchMsgService.i"
 	@echo "... src/DispatchMsgService.s"
+	@echo "... src/NetworkInterface.o"
+	@echo "... src/NetworkInterface.i"
+	@echo "... src/NetworkInterface.s"
 	@echo "... src/events.o"
 	@echo "... src/events.i"
 	@echo "... src/events.s"
@@ -449,6 +520,9 @@ help:
 	@echo "... src/user_event_handler.o"
 	@echo "... src/user_event_handler.i"
 	@echo "... src/user_event_handler.s"
+	@echo "... tests/test_client.o"
+	@echo "... tests/test_client.i"
+	@echo "... tests/test_client.s"
 .PHONY : help
 
 
