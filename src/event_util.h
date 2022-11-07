@@ -15,12 +15,12 @@
 #include "proto/bike.pb.h"
 
 
-iEvent* parseEvent(uint32_t eid, const char* msg, uint32_t len) {
+iEvent* ParseEvent(uint32_t eid, const char* msg, uint32_t len) {
     if(!msg || len < 0) {
         return nullptr;
     }
 
-    if(eid == EventType::EVT_MOBIKE_CODE_REQUEST) {
+    if(eid == EventType::EVT_MOBILE_CODE_REQUEST) {
         bike::mobile_code_request mcr;
         if(mcr.ParseFromArray(msg, len)) {
             return new MobileCodeReqEv(mcr.mobile());

@@ -10,7 +10,7 @@
 class MobileCodeReqEv : public iEvent {
 public:
     MobileCodeReqEv(const std::string& mobile)
-        :iEvent(EventType::EVT_MOBIKE_CODE_REQUEST, iEvent::generateSeqNo()) {
+        :iEvent(EventType::EVT_MOBILE_CODE_REQUEST, iEvent::generateSeqNo()) {
         m_mrc.set_mobile(mobile);        
     }
 
@@ -26,7 +26,7 @@ private:
 class MobileCodeRespEv : public iEvent {
 public:
     MobileCodeRespEv(uint32_t code, uint32_t icode) 
-        :iEvent(EventType::EVT_MOBIKE_CODE_RESPONSE, iEvent::generateSeqNo()){
+        :iEvent(EventType::EVT_MOBILE_CODE_RESPONSE, iEvent::generateSeqNo()){
         m_resp.set_code(code);
         m_resp.set_icode(icode);
         m_resp.set_desc(GetReturnCodeDesc(code));
@@ -36,8 +36,15 @@ public:
     uint32_t getICode() const { return m_resp.icode(); }
     virtual std::ostream& dump(std::ostream& out) override;
 
+    const bike::mobile_code_response& getProto() const { return m_resp; }
+
 private:
     bike::mobile_code_response m_resp;
+};
+
+class DoExitEv : public iEvent {
+public:
+    DoExitEv() : iEvent(EventType::EVT_DO_EXIT, iEvent::generateSeqNo()) {}
 };
 
 #endif

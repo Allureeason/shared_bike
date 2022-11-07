@@ -4,18 +4,18 @@
 
 UserEventHandler::UserEventHandler()
     :iEventHandler("UserEventHandler") {
-    DispatchMsgService::getInstance()->subscribe(EventType::EVT_MOBIKE_CODE_REQUEST, this);
+    DispatchMsgService::getInstance()->subscribe(EventType::EVT_MOBILE_CODE_REQUEST, this);
     thread_mutex_create(&m_mutex);
 }
 
 UserEventHandler::~UserEventHandler() {
-    DispatchMsgService::getInstance()->unsubscribe(EventType::EVT_MOBIKE_CODE_REQUEST, this);
+    DispatchMsgService::getInstance()->unsubscribe(EventType::EVT_MOBILE_CODE_REQUEST, this);
     thread_mutex_destroy(&m_mutex);
 }
 
 iEvent* UserEventHandler::handle(iEvent* ev) {
     uint32_t eid = ev->getId();
-    if(eid == EventType::EVT_MOBIKE_CODE_REQUEST) {
+    if(eid == EventType::EVT_MOBILE_CODE_REQUEST) {
         return handleMobileCodeReq((MobileCodeReqEv*)ev);
     }
     return nullptr;
@@ -27,7 +27,6 @@ MobileCodeRespEv* UserEventHandler::handleMobileCodeReq(MobileCodeReqEv* req) {
     thread_mutex_lock(&m_mutex);
     m_mobile2code[mobile] = icode;
     thread_mutex_unlock(&m_mutex);
-    LOG_DEBUG("UserEventHandler::handleMobileCodeReq. mobile=%s,gen icode=%d\n", mobile.c_str(), icode);
     return new MobileCodeRespEv(RetCode::OK, icode);
 }
 

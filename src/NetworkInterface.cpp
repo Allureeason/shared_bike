@@ -43,6 +43,27 @@ static void session_close(ConnectSession* cs) {
     delete cs;
 }
 
+static void session_reset(ConnectSession* cs) {
+    if(cs == nullptr) {
+        return;
+    }
+
+    if(cs->read_buf) {
+        delete[] cs->read_buf;
+    }
+
+    if(cs->write_buf) {
+        delete[] cs->write_buf;
+    }
+
+    cs->session_stat = SessionStatus::SS_REQUEST;
+    cs->req_stat = MessageStatus::MS_READ_HEADER;
+    cs->message_len = 0;
+    cs->read_len = 0;
+    cs->send_len = 0;
+    cs->read_header_len = 0;
+}
+
 NetworkInterface::NetworkInterface() {
     m_evBase = nullptr;
     m_listener = nullptr;
@@ -115,7 +136,7 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
                 session_close(cs);
                 return;
             }
-            cs->eid = *(uint16_t*)(cs->header + sizeof(SERVER_FLAG));
+            cs->eid = *(uint16_t*)(cs->header + 4);
             cs->message_len = *(uint32_t*)(cs->header + 6);
             LOG_DEBUG("NetworkInterface::handle_request. recv header=%s,eid=%d,msg_len=%d\n", cs->header, cs->eid, cs->message_len);
             if(cs->message_len < 1 || cs->message_len > MAX_MESSAGE_LEN) {
@@ -136,7 +157,7 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
         if(cs->read_len == cs->message_len) {
             cs->req_stat = MessageStatus::MS_READ_DONE;
             cs->session_stat = SessionStatus::SS_RESPONSE;
-            iEvent* ev = parseEvent(cs->eid, cs->read_buf, cs->message_len);
+            iEvent* ev = ParseEvent(cs->eid, cs->read_buf, cs->message_len);
 
             delete[] cs->read_buf;
             cs->read_buf = nullptr;
@@ -156,11 +177,21 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
 }
 
 void NetworkInterface::handle_response(struct bufferevent* bev, void* arg) {
-
+    LOG_DEBUG("NetworkInterface::handle_response. Do response to client.\n");
 }
 
 void NetworkInterface::handle_error(struct bufferevent* bev, short event, void* arg) {
+    ConnectSession* cs = (ConnectSession*)arg;
 
+    LOG_DEBUG("NetworkInterface::handle_error.");
+    if(event & BEV_EVENT_EOF) {
+        LOG_DEBUG("Client close.\n");
+    } else {
+        LOG_WARN("warn...\n");
+    }
+
+    bufferevent_free(bev);
+    session_close(cs);
 }
 
 void NetworkInterface::networkEventDispatch() {
@@ -168,5 +199,19 @@ void NetworkInterface::networkEventDispatch() {
 }
 
 void NetworkInterface::sendResponseMessage(ConnectSession* cs) {
+    if(!cs) {
+        return;
+    }
 
+    if(!cs->response || cs->eid == EventType::EVT_DO_EXIT) {
+        bufferevent_free(cs->bev);
+        if(cs->request) {
+            delete cs->request;
+        }
+        session_close(cs);
+        return;
+    }
+    LOG_DEBUG("NetworkInterface::sendResponseMessage.\n");
+    bufferevent_write(cs->bev, cs->write_buf, MAX_MESSAGE_LEN + cs->message_len);
+    session_reset(cs);
 }

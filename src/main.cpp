@@ -11,7 +11,7 @@
 int main(int argc, char** argv) {
 
     UserEventHandler uehl; 
-    printf("Server start");
+    printf("============Server start=============\n");
     DispatchMsgService *DMS = DispatchMsgService::getInstance();
     DMS->open();
     
@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
     while(n--) {
         Net->networkEventDispatch();
         sleep(1);
+        DMS->workSendResponses(Net);
         printf("NetworkInterface dispatch...\n");
     }
 

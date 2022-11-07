@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
+#include "../src/proto/bike.pb.h"
+
 int main(int argc, const char *argv[])
 {
         char buf[128];//用来储存发送数据的数组
@@ -33,13 +36,18 @@ int main(int argc, const char *argv[])
         printf("连接成功\n");
         while(1)
         {
-            char msg[1024] = "BUSY";
-            msg[4] = 1;
-            memset(msg + 6, 0, 4);
-            msg[6] = 11;
-            printf("len=%d\n", *(int*)(msg+6));
-            strncpy(msg + 10, "1520774725", 11);
-            write(sfd, msg, sizeof(msg));
+            char msg[1024];
+            // 协议头
+            bike::mobile_code_request mcr;
+            mcr.set_mobile("15207747257");
+            int msg_len = mcr.ByteSize();
+            strncpy(msg, "BUSY", 4);
+            *(short*)(msg + 4) = 1;
+            *(int*)(msg + 6) = msg_len;
+
+            mcr.SerializeToArray(msg + 10, msg_len);
+
+            int len = write(sfd, msg, msg_len + 10);
             sleep(1);
         }
         return 0;
