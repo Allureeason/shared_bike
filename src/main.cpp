@@ -16,21 +16,17 @@ int main(int argc, char** argv) {
     DMS->open();
     
     NetworkInterface *Net = new NetworkInterface();
-    Net->start(8888);
+    Net->start(2022);
 
-    int n = 1000;
+    int n = 1000000;
     while(n--) {
         Net->networkEventDispatch();
-        sleep(1);
+        usleep(100);
         DMS->workSendResponses(Net);
-        printf("NetworkInterface dispatch...\n");
     }
 
     DMS->close();
     Net->close();
-
-    delete DMS;
-    delete Net;
 
     return 0;
 }

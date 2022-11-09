@@ -34,10 +34,12 @@ static void session_close(ConnectSession* cs) {
 
     if(cs->read_buf) {
         delete[] cs->read_buf;
+        cs->read_buf = nullptr;
     }
 
     if(cs->write_buf) {
         delete[] cs->write_buf;
+        cs->write_buf = nullptr;
     }
 
     delete cs;
@@ -50,10 +52,22 @@ static void session_reset(ConnectSession* cs) {
 
     if(cs->read_buf) {
         delete[] cs->read_buf;
+        cs->read_buf = nullptr;
     }
 
     if(cs->write_buf) {
         delete[] cs->write_buf;
+        cs->write_buf = nullptr;
+    }
+
+    if(cs->request) {
+        delete cs->request;
+        cs->request = nullptr;
+    }
+
+    if(cs->response) {
+        delete cs->response;
+        cs->response = nullptr;
     }
 
     cs->session_stat = SessionStatus::SS_REQUEST;
@@ -100,7 +114,7 @@ void NetworkInterface::close() {
 
 void NetworkInterface::listener_cb(struct evconnlistener* listener, evutil_socket_t fd,
                         struct sockaddr* addr, int socklen, void* arg) {
-    LOG_DEBUG("accept client fd=%d,", fd); 
+    //LOG_DEBUG("accept client fd=%d,", fd); 
     struct event_base* base = (struct event_base*)arg;
     struct bufferevent* bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
 
@@ -109,7 +123,7 @@ void NetworkInterface::listener_cb(struct evconnlistener* listener, evutil_socke
     cs->req_stat = MessageStatus::MS_READ_HEADER;
 
     strcpy(cs->remote_ip, inet_ntoa(((struct sockaddr_in*)addr)->sin_addr));
-    LOG_DEBUG("remote ip=%s\n", cs->remote_ip);
+    //LOG_DEBUG("remote ip=%s\n", cs->remote_ip);
     bufferevent_setcb(bev, handle_request, handle_response, handle_error, cs);
     bufferevent_enable(bev, EV_READ | EV_PERSIST);
 }
@@ -138,7 +152,7 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
             }
             cs->eid = *(uint16_t*)(cs->header + 4);
             cs->message_len = *(uint32_t*)(cs->header + 6);
-            LOG_DEBUG("NetworkInterface::handle_request. recv header=%s,eid=%d,msg_len=%d\n", cs->header, cs->eid, cs->message_len);
+            //LOG_DEBUG("NetworkInterface::handle_request. recv header=%s,eid=%d,msg_len=%d\n", cs->header, cs->eid, cs->message_len);
             if(cs->message_len < 1 || cs->message_len > MAX_MESSAGE_LEN) {
                 LOG_ERROR("NetworkInterface::handle_request. message too long.\n");
                 bufferevent_free(bev);
@@ -150,7 +164,8 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
             cs->read_buf = new char[cs->message_len];
             cs->read_len = 0;
         }
-    } else if(cs->req_stat == MessageStatus::MS_READ_MESSAGE && evbuffer_get_length(bufferevent_get_input(bev)) > 0) {
+    }
+    if(cs->req_stat == MessageStatus::MS_READ_MESSAGE && evbuffer_get_length(bufferevent_get_input(bev)) > 0) {
         int len = bufferevent_read(bev, cs->read_buf + cs->read_len, cs->message_len - cs->read_len);
         cs->read_len += len;
         // 读取完数据包
@@ -177,15 +192,15 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
 }
 
 void NetworkInterface::handle_response(struct bufferevent* bev, void* arg) {
-    LOG_DEBUG("NetworkInterface::handle_response. Do response to client.\n");
+    //LOG_DEBUG("NetworkInterface::handle_response. Do response to client.\n");
 }
 
 void NetworkInterface::handle_error(struct bufferevent* bev, short event, void* arg) {
     ConnectSession* cs = (ConnectSession*)arg;
 
-    LOG_DEBUG("NetworkInterface::handle_error.");
+    //LOG_DEBUG("NetworkInterface::handle_error.");
     if(event & BEV_EVENT_EOF) {
-        LOG_DEBUG("Client close.\n");
+        //LOG_DEBUG("Client close.\n");
     } else {
         LOG_WARN("warn...\n");
     }
@@ -211,7 +226,6 @@ void NetworkInterface::sendResponseMessage(ConnectSession* cs) {
         session_close(cs);
         return;
     }
-    LOG_DEBUG("NetworkInterface::sendResponseMessage.\n");
-    bufferevent_write(cs->bev, cs->write_buf, MAX_MESSAGE_LEN + cs->message_len);
+    bufferevent_write(cs->bev, cs->write_buf, MESSAGE_HEADER_LEN + cs->message_len);
     session_reset(cs);
 }

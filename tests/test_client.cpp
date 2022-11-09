@@ -25,7 +25,7 @@ int main(int argc, const char *argv[])
             return -1;
         }
         src.sin_family=AF_INET;//ip为IPv4地址
-        src.sin_port=htons(8888);//目标服务器端口号(从终端传入的是字符串，我们先用atio函数将字符串转换从整型，然后用htons函数将整型转换成网络字节序）
+        src.sin_port=htons(2022);//目标服务器端口号(从终端传入的是字符串，我们先用atio函数将字符串转换从整型，然后用htons函数将整型转换成网络字节序）
         src.sin_addr.s_addr=inet_addr("127.0.0.1"); //目标ip（用inet_addr函数将ip字符串转化成网络字节序）                                    
         ret=connect(sfd,(const struct sockaddr *)&src,len);//连接目标服务器
         if(ret<0)
@@ -48,7 +48,17 @@ int main(int argc, const char *argv[])
             mcr.SerializeToArray(msg + 10, msg_len);
 
             int len = write(sfd, msg, msg_len + 10);
-            sleep(1);
+            printf("Client write len=%d, msg=%s\n", len, buf);
+
+
+            len = read(sfd, msg, sizeof(msg));
+            printf("read\n");
+            bike::mobile_code_response resp;
+            short ev = *(short*)(msg + 4);
+            msg_len = *(int*)(msg + 6);
+            resp.ParseFromArray(msg + 10, msg_len);
+
+            printf("read len=%d,ev=%d,msg len=%d,icode=%d.\n", len, ev, msg_len, resp.icode());
         }
         return 0;
 }

@@ -15,6 +15,7 @@ DispatchMsgService::DispatchMsgService() {
 }
 
 DispatchMsgService::~DispatchMsgService() {
+    close();
 }
 
 bool DispatchMsgService::open() {
@@ -72,7 +73,7 @@ std::list<iEvent*> DispatchMsgService::process(iEvent* ev) {
     }
 
     uint32_t eid = ev->getId();
-    LOG_DEBUG("DispatchMsgService::process. ev=[eid=%d, sn=%d]\n", eid, ev->getSn());
+    //LOG_DEBUG("DispatchMsgService::process. ev=[eid=%d, sn=%d]\n", eid, ev->getSn());
     auto it = m_ev2handlers.find(eid);
     if(it == m_ev2handlers.end()) {
         LOG_WARN("DispatchMsgService::process. not found handler to due ev[eid=%d, sn=%d]\n", eid, ev->getSn());
@@ -80,7 +81,7 @@ std::list<iEvent*> DispatchMsgService::process(iEvent* ev) {
     }
     auto handlers = it->second;
     for(auto handler : handlers) {
-        LOG_DEBUG("DispatchMsgService::process. handler name=%s\n", handler->getName().c_str());
+        //LOG_DEBUG("DispatchMsgService::process. handler name=%s\n", handler->getName().c_str());
         iEvent* resp = handler->handle(ev);
         resps.push_back(resp);
     }
@@ -89,7 +90,7 @@ std::list<iEvent*> DispatchMsgService::process(iEvent* ev) {
 
 void DispatchMsgService::svc(void *args) {
     if(!m_close) {
-        LOG_DEBUG("DispatchMsgService::svc.\n");
+        //LOG_DEBUG("DispatchMsgService::svc.\n");
         DispatchMsgService* dispatch = getInstance();
         iEvent* ev = (iEvent*)args;
         if(!ev) {
@@ -108,7 +109,6 @@ void DispatchMsgService::svc(void *args) {
             resp->dump(std::cout);
         }
         thread_mutex_unlock(&m_mutex);
-
         delete ev;
     }
 }
@@ -128,10 +128,11 @@ void DispatchMsgService::workSendResponses(NetworkInterface* interface) {
 
         if(ev) {
             if(ev->getId() == EventType::EVT_MOBILE_CODE_RESPONSE) {
-                LOG_DEBUG("file=%s,line=%d,MobileCodeRespEv.\n", __FILE__, __LINE__);
+                //LOG_DEBUG("file=%s,line=%d,MobileCodeRespEv.\n", __FILE__, __LINE__);
                 MobileCodeRespEv* resp = (MobileCodeRespEv*)ev;
                 ConnectSession* cs = (ConnectSession*)ev->getArg();
                 cs->message_len = resp->getProto().ByteSize();
+                //LOG_DEBUG("DispatchMsgService::workSendResponses. message_len=%d\n", cs->message_len);
                 cs->write_buf = new char[MAX_MESSAGE_LEN + cs->message_len];
                 
                 // 组装头部
@@ -139,7 +140,7 @@ void DispatchMsgService::workSendResponses(NetworkInterface* interface) {
                 *(uint16_t*)(cs->write_buf + 4) = EventType::EVT_MOBILE_CODE_RESPONSE;
                 *(uint32_t*)(cs->write_buf + 6) = cs->message_len;
 
-                resp->getProto().SerializeToArray(cs->write_buf + MAX_MESSAGE_LEN, cs->message_len);
+                resp->getProto().SerializeToArray(cs->write_buf + MESSAGE_HEADER_LEN, cs->message_len);
                 cs->response = resp;
                 interface->sendResponseMessage(cs);
             }

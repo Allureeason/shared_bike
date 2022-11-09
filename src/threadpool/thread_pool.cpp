@@ -225,6 +225,7 @@ thread_pool_cycle(void *data)
         if(debug) fprintf(stderr,"complete task #%lu in thread pool \"%s\"\n",task->id, tp->name);
 
         task->next = NULL;
+        thread_task_free(task);
 
         //notify 
     }
