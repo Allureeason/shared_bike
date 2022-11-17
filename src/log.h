@@ -24,13 +24,8 @@
 #include <sstream>
 #include <string>
  
-using std::cout;
-using std::endl;
-using std::ostringstream;
-using std::string;
-using namespace log4cpp;
 #define RollingFileName "../log/log4cpp.log"
- 
+
 class Mylog4cpp{
 public:
     static Mylog4cpp * getInstance(){            //单例模式
@@ -40,12 +35,13 @@ public:
     }
     ~Mylog4cpp();
 
-    void logInfo (const string & Message);    
-    void logError(const string & Message);
-    void logWarn (const string & Message);
-    void logDebug(const string & Message);
+   
+    void logInfo (const std::string & Message);    
+    void logError(const std::string & Message);
+    void logWarn (const std::string & Message);
+    void logDebug(const std::string & Message);
 private:
-    Category & _root;                   //引用避免了再次复制root对象
+    log4cpp::Category & _root;                   //引用避免了再次复制root对象
 private:
     static Mylog4cpp * _instance;
     Mylog4cpp();
