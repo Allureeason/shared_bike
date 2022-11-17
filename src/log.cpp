@@ -23,37 +23,17 @@ Mylog4cpp::~Mylog4cpp(){
  
 void Mylog4cpp::logInfo (const string & Message){
     string Message2=Message;
-    Message2 += __FILE__;
-    Message2 += ".";
-    Message2 += __FUNCTION__;
-    Message2 += ".";
-    Message2 += std::to_string(__LINE__);
     _root.info(Message2);     
 }       
 void Mylog4cpp::logError (const string & Message){
     string Message2=Message;
-    Message2 += __FILE__;
-    Message2 += ".";
-    Message2 += __FUNCTION__;
-    Message2 += ".";
-    Message2 += std::to_string(__LINE__);
     _root.error(Message2);      
 }
 void Mylog4cpp::logWarn (const string & Message){
     string Message2=Message;
-    Message2 += __FILE__;
-    Message2 += ".";
-    Message2 += __FUNCTION__;
-    Message2 += ".";
-    Message2 += std::to_string(__LINE__);
     _root.warn(Message2);      
 }
 void Mylog4cpp::logDebug (const string & Message){
-    string Message2=Message;
-    Message2 += __FILE__;
-    Message2 += ".";
-    Message2 += __FUNCTION__;
-    Message2 += ".";
-    Message2 += std::to_string(__LINE__);   
+    string Message2=Message; 
     _root.debug(Message2);     
 }

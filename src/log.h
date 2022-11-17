@@ -29,7 +29,7 @@ using std::endl;
 using std::ostringstream;
 using std::string;
 using namespace log4cpp;
-#define RollingFileName "log4cpp.log"
+#define RollingFileName "../log/log4cpp.log"
  
 class Mylog4cpp{
 public:
