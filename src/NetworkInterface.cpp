@@ -154,7 +154,7 @@ void NetworkInterface::handle_request(struct bufferevent* bev, void* arg) {
             cs->message_len = *(uint32_t*)(cs->header + 6);
             //LOG_DEBUG("NetworkInterface::handle_request. recv header=%s,eid=%d,msg_len=%d\n", cs->header, cs->eid, cs->message_len);
             if(cs->message_len < 1 || cs->message_len > MAX_MESSAGE_LEN) {
-                LOG_ERROR("NetworkInterface::handle_request. message too long.\n");
+                //LOG_ERROR("NetworkInterface::handle_request. message too long.\n");
                 bufferevent_free(bev);
                 session_close(cs);
                 return;
@@ -202,7 +202,7 @@ void NetworkInterface::handle_error(struct bufferevent* bev, short event, void* 
     if(event & BEV_EVENT_EOF) {
         //LOG_DEBUG("Client close.\n");
     } else {
-        LOG_WARN("warn...\n");
+        //LOG_WARN("warn...\n");
     }
 
     bufferevent_free(bev);
