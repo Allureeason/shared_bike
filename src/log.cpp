@@ -4,8 +4,7 @@
 Mylog4cpp * Mylog4cpp::_instance=NULL;          //静态成员类外初始化
  
 Mylog4cpp::Mylog4cpp()
-:_root(log4cpp::Category::getRoot())
-{
+:_root(log4cpp::Category::getRoot()){
     log4cpp::PatternLayout * _ptnLyout = new log4cpp::PatternLayout();
     _ptnLyout->setConversionPattern("%d{%Y/%m/%d %H:%M:%S} [%5p] :%m%n");             //PatternLayout定义布局格式 
     log4cpp::RollingFileAppender * _rollingFileAppender = new log4cpp::RollingFileAppender("rollingFileAppender", RollingFileName,5 * 1024,2) ; //设置回卷格式fileappender
@@ -14,7 +13,7 @@ Mylog4cpp::Mylog4cpp()
     _root.addAppender(_rollingFileAppender);   //可以多次add不同类型的appender 实现向不同流输出
     _root.setPriority(log4cpp::Priority::DEBUG);
 }
- 
+    
 Mylog4cpp::~Mylog4cpp(){
     //delete _ptnLyout;
     //delete _rollingFileAppender;

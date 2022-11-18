@@ -21,7 +21,7 @@ add_library(shared_bike SHARED
     src/user_event_handler.cpp
     src/DispatchMsgService.cpp
     src/NetworkInterface.cpp
-
+    src/log.cpp
     src/threadpool/thread_cond.cpp
     src/threadpool/thread_mutex.cpp
     src/threadpool/thread_pool.cpp

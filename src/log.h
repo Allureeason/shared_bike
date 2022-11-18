@@ -7,15 +7,6 @@
 #include <iostream>
 #include <memory>
 #include <mutex>
-
-/*
-#define LOG_DEBUG 
-#define LOG_INFO    
-#define LOG_ERROR   
-#define LOG_FAILT   
-#define LOG_WARN    
-*/
-#include <log4cpp/Category.hh>
 #include <log4cpp/Priority.hh>
 #include <log4cpp/PatternLayout.hh>
 #include <log4cpp/FileAppender.hh>
@@ -23,7 +14,28 @@
 #include <iostream>
 #include <sstream>
 #include <string>
- 
+
+#define LOG_DEBUG(format, ...) \
+    char str[80];\
+    sprintf(str,format,##__VA_ARGS__);\
+    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
+    mylog4cpp1->logDebug(str);
+#define LOG_INFO(format, ...) \
+    char str[80];\
+    sprintf(str,format,##__VA_ARGS__);\
+    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
+    mylog4cpp1->logInfo(str);
+#define LOG_ERROR(format, ...) \
+    char str[80];\
+    sprintf(str,format,##__VA_ARGS__);\
+    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
+    mylog4cpp1->logError(str);  
+#define LOG_WARN(format, ...) \
+    char str[80];\
+    sprintf(str,format,##__VA_ARGS__);\
+    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
+    mylog4cpp1->logWarn(str);
+     
 #define RollingFileName "../log/log4cpp.log"
 
 class Mylog4cpp{
