@@ -45,10 +45,6 @@ add_executable(test_client tests/test_client.cpp)
 add_dependencies(test_client test_client)
 target_link_libraries(test_client ${LINK_LIB})
 
-add_executable(test_log tests/test_log.cpp)
-add_dependencies(test_log test_log)
-target_link_libraries(test_log ${LINK_LIB})
-
 
 # 设置动态库和可执行文件的输出路径
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
