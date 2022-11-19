@@ -14,27 +14,23 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <stdarg.h>
 
-#define LOG_DEBUG(format, ...) \
-    char str[80];\
-    sprintf(str,format,##__VA_ARGS__);\
+#define LOG_DEBUG(fmt, ...) \
     Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
-    mylog4cpp1->logDebug(str);
-#define LOG_INFO(format, ...) \
-    char str[80];\
-    sprintf(str,format,##__VA_ARGS__);\
-    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
-    mylog4cpp1->logInfo(str);
-#define LOG_ERROR(format, ...) \
-    char str[80];\
-    sprintf(str,format,##__VA_ARGS__);\
-    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
-    mylog4cpp1->logError(str);  
-#define LOG_WARN(format, ...) \
-    char str[80];\
-    sprintf(str,format,##__VA_ARGS__);\
-    Mylog4cpp *mylog4cpp1=Mylog4cpp::getInstance();\
-    mylog4cpp1->logWarn(str);
+    mylog4cpp1->logDebug(mylog4cpp1->format(fmt, __VA_ARGS__));
+
+#define LOG_INFO(fmt, ...) \
+    Mylog4cpp *mylog4cpp2=Mylog4cpp::getInstance();\
+    mylog4cpp2->logInfo(mylog4cpp1->format(fmt, __VA_ARGS__));
+
+#define LOG_ERROR(fmt, ...) \
+    Mylog4cpp *mylog4cpp3=Mylog4cpp::getInstance();\
+    mylog4cpp3->logError(mylog4cpp1->format(fmt, __VA_ARGS__));
+
+#define LOG_WARN(fmt, ...) \
+    Mylog4cpp *mylog4cpp4=Mylog4cpp::getInstance();\
+    mylog4cpp4->logWarn(mylog4cpp1->format(fmt, __VA_ARGS__));
      
 #define RollingFileName "../log/log4cpp.log"
 
@@ -47,12 +43,14 @@ public:
     }
     ~Mylog4cpp();
 
-   
-    void logInfo (const std::string & Message);    
-    void logError(const std::string & Message);
-    void logWarn (const std::string & Message);
-    void logDebug(const std::string & Message);
+    std::string format(const char* fmt, ...);
+    std::string format(const char* fmt, va_list al);
+    void logInfo (const std::string  Message);    
+    void logError(const std::string  Message);
+    void logWarn (const std::string  Message);
+    void logDebug(const std::string  Message);
 private:
+   
     log4cpp::Category & _root;                   //引用避免了再次复制root对象
 private:
     static Mylog4cpp * _instance;

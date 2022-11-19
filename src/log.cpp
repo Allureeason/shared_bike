@@ -20,15 +20,34 @@ Mylog4cpp::~Mylog4cpp(){
     log4cpp::Category::shutdown();
 }
  
-void Mylog4cpp::logInfo (const std::string & Message){
+void Mylog4cpp::logInfo (const std::string  Message){
     _root.info(Message);     
 }       
-void Mylog4cpp::logError (const std::string & Message){
+void Mylog4cpp::logError (const std::string  Message){
     _root.error(Message);      
 }
-void Mylog4cpp::logWarn (const std::string & Message){
+void Mylog4cpp::logWarn (const std::string  Message){
     _root.warn(Message);      
 }
-void Mylog4cpp::logDebug (const std::string & Message){ 
+void Mylog4cpp::logDebug (const std::string  Message){ 
     _root.debug(Message);     
+}
+
+std::string Mylog4cpp::format(const char* fmt, ...) {
+    va_list al;
+    va_start(al, fmt);
+    std::string str=format(fmt, al);
+    va_end(al);
+    return str;
+}
+
+std::string Mylog4cpp::format(const char* fmt, va_list al) {
+    char* buf = nullptr;
+    int len = vasprintf(&buf, fmt, al);
+    std::stringstream m_ss;
+    if(len != -1) {
+        m_ss << std::string(buf, len);
+        free(buf);
+    }
+    return m_ss.str();
 }
