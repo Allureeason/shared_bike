@@ -7,14 +7,16 @@
 #include "user_event_handler.h"
 #include "DispatchMsgService.h"
 #include "NetworkInterface.h"
+#include "log.h"
 
 int main(int argc, char** argv) {
 
-    UserEventHandler uehl; 
-    printf("============Server start=============\n");
+    UserEventHandler uehl;
+    LOG_INFO("============%s Server start=============\n", "SharedBike");
     DispatchMsgService *DMS = DispatchMsgService::getInstance();
     DMS->open();
-    
+
+
     NetworkInterface *Net = new NetworkInterface();
     Net->start(2022);
 
@@ -23,6 +25,7 @@ int main(int argc, char** argv) {
         Net->networkEventDispatch();
         usleep(100);
         DMS->workSendResponses(Net);
+
     }
 
     DMS->close();
